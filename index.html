@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#5b4bdb">
+  <title>Our Town, Our Friends! — Grade 5 English</title>
+  <style>
+    :root{--ink:#202447;--purple:#5b4bdb;--pink:#ff6ba6;--yellow:#ffd45c;--mint:#66dfc2;--sky:#bcecff;--paper:#fffdf6}
+    *{box-sizing:border-box} body{margin:0;background:#f4f3ff;color:var(--ink);font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;min-height:100vh;display:grid;place-items:center;padding:20px}
+    button{font:inherit} .app{width:min(100%,1000px);background:white;border-radius:28px;overflow:hidden;box-shadow:0 20px 70px #312c7130}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 24px;background:white}
+    .brand{font-weight:900;font-size:1.05rem;letter-spacing:.02em}.brand span{color:var(--purple)} .top-note{font-size:.88rem;color:#686b88}
+    .stage{position:relative;min-height:470px;overflow:hidden;background:linear-gradient(180deg,#bcecff 0%,#e0f9ff 72%,#93e7b5 72%,#70d99d 100%);isolation:isolate}
+    .scene-bg{position:absolute;inset:0;pointer-events:none;z-index:-1}.sun{position:absolute;right:9%;top:7%;font-size:4rem;animation:float 3s ease-in-out infinite}.cloud{position:absolute;font-size:4rem;opacity:.8;animation:drift 18s linear infinite}.cloud.one{top:12%;left:10%}.cloud.two{top:24%;left:65%;animation-delay:-8s;font-size:3rem}
+    .scene{display:none;min-height:470px;padding:34px clamp(20px,5vw,58px) 25px;animation:enter .5s ease both}.scene.active{display:flex;flex-direction:column;justify-content:space-between}
+    .scene-heading{display:flex;align-items:center;gap:12px}.scene-number{display:grid;place-items:center;width:40px;height:40px;border-radius:14px;background:var(--yellow);font-weight:900}.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.11em;font-weight:900;color:#56517b}.scene h1{font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.06;margin:8px 0 0}.scene p.lead{font-size:1.08rem;line-height:1.5;max-width:680px;margin:12px 0}
+    .town{display:flex;justify-content:center;align-items:end;gap:clamp(8px,2.8vw,26px);padding:10px 0 0;flex-wrap:wrap}.place{width:clamp(105px,18vw,150px);height:145px;border:4px solid white;border-radius:20px 20px 13px 13px;box-shadow:0 8px 0 #27275418;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;animation:bob 3s ease-in-out infinite}.place:nth-child(2){animation-delay:.3s}.place:nth-child(3){animation-delay:.6s}.place:nth-child(4){animation-delay:.9s}.place .emoji{font-size:3.2rem;line-height:1}.place strong{margin-top:8px;background:#ffffffd9;border-radius:99px;padding:4px 10px;font-size:.9rem}.place.library{background:#ffcf74}.place.park{background:#77d78f}.place.pool{background:#6dcaf0}.place.cinema{background:#fb91b5}
+    .dialogue{display:flex;align-items:end;justify-content:center;gap:clamp(12px,4vw,40px);margin-top:12px}.character{font-size:clamp(4rem,9vw,6.2rem);filter:drop-shadow(0 7px 3px #25315b22);animation:bob 2s ease-in-out infinite}.character:nth-child(3){animation-delay:.35s}.speech{position:relative;background:white;border:3px solid #fff;border-radius:20px;padding:13px 17px;max-width:420px;box-shadow:0 6px 0 #38316b18;font-size:clamp(.95rem,2vw,1.12rem);line-height:1.45}.speech:after{content:"";position:absolute;bottom:-12px;left:25px;border-width:12px 12px 0 0;border-style:solid;border-color:white transparent transparent transparent}.speech b{color:var(--purple)}
+    .dialogue-row{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:12px}.talk{max-width:44%;min-width:220px;background:#fff;border-radius:18px;padding:12px 16px;box-shadow:0 6px 0 #38316b18;line-height:1.45}.talk .name{display:block;color:var(--purple);font-weight:900;font-size:.83rem;margin-bottom:3px}.talk.friend .name{color:#df4f83}
+    .rule-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px auto 0;width:min(100%,680px)}.rule{background:#fff;border-radius:16px;padding:12px 14px;box-shadow:0 5px 0 #34316b16;display:flex;align-items:center;gap:11px;font-size:1rem}.rule .icon{font-size:1.8rem}.must{color:#168b69;font-weight:900}.mustnt{color:#db4f68;font-weight:900}
+    .email{width:min(100%,620px);margin:10px auto 0;background:white;border-radius:18px;box-shadow:0 10px 0 #45407920;overflow:hidden;transform:rotate(-1deg);animation:mailIn .7s ease both}.email-top{padding:10px 16px;background:#5b4bdb;color:white;font-weight:800}.email-body{padding:13px 18px;font:1rem/1.6 ui-rounded,"Trebuchet MS",sans-serif}.also{background:#c9f8e8;border-radius:6px;padding:1px 5px;font-weight:900;color:#08765b}.too{background:#ffe5a7;border-radius:6px;padding:1px 5px;font-weight:900;color:#8a5900}.email-note{text-align:center;font-size:.9rem;margin:10px 0 0;color:#49476d}
+    .end-card{background:#fff;border-radius:24px;padding:25px;text-align:center;width:min(100%,650px);margin:auto;box-shadow:0 8px 0 #34316b18}.end-card .big{font-size:3.5rem}.end-card h2{margin:4px 0 8px;font-size:2rem}.end-card p{line-height:1.5;margin:8px auto;max-width:500px}
+    .caption{padding:13px 22px;background:#26264c;color:white;min-height:54px;font-size:.98rem;line-height:1.45}.caption strong{color:var(--yellow)}
+    .controls{display:flex;align-items:center;gap:12px;padding:15px 20px;background:#fff}.control-btn{border:0;border-radius:14px;padding:11px 16px;font-weight:900;cursor:pointer;transition:transform .15s,filter .15s}.control-btn:hover{transform:translateY(-2px);filter:brightness(.97)}.control-btn:focus-visible{outline:3px solid #282655;outline-offset:3px}.primary{background:var(--purple);color:white}.secondary{background:#efeffb;color:#39365f}.progress-wrap{flex:1}.progress-label{display:flex;justify-content:space-between;font-size:.78rem;color:#71718e;margin-bottom:6px}.track{height:9px;border-radius:99px;background:#e8e7f2;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple));border-radius:inherit;transition:width .3s}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}} @keyframes float{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-9px) rotate(5deg)}} @keyframes drift{from{transform:translateX(-20px)}to{transform:translateX(30px)}} @keyframes enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}} @keyframes mailIn{from{opacity:0;transform:translateY(20px) rotate(3deg)}to{opacity:1;transform:rotate(-1deg)}}
+    @media(max-width:600px){body{padding:8px}.app{border-radius:20px}.stage,.scene{min-height:530px}.scene{padding:24px 18px 20px}.top-note{display:none}.place{height:120px}.place .emoji{font-size:2.6rem}.dialogue{gap:7px}.talk{min-width:0;max-width:49%;padding:10px 11px;font-size:.9rem}.rule-cards{gap:8px}.rule{font-size:.88rem;padding:10px}.controls{gap:7px;padding:12px 10px}.control-btn{padding:10px 11px;font-size:.88rem}.caption{padding:12px 15px}.scene h1{font-size:1.8rem}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <main class="app" aria-label="Animated Grade 5 English lesson">
+    <header><div class="brand">🌈 <span>Bright Ideas</span> English</div><div class="top-note">A little English adventure • Grade 5</div></header>
+    <div class="stage" id="stage" aria-live="off">
+      <div class="scene-bg" aria-hidden="true"><div class="sun">☀️</div><div class="cloud one">☁️</div><div class="cloud two">☁️</div></div>
+      <section class="scene active" data-caption="Welcome to Our Town, Our Friends! Today we will visit public places, invite friends, learn pool rules, and write a friendly email." aria-label="Welcome">
+        <div><div class="scene-heading"><div class="scene-number">1</div><div class="eyebrow">Let’s learn together!</div></div><h1>Our Town,<br>Our Friends! 🎈</h1><p class="lead">Ready for a colorful English adventure? Meet Maya and Leo as they explore places, make plans, stay safe, and share a friendly email.</p></div>
+        <div class="dialogue"><div class="character" aria-hidden="true">👧🏽</div><div class="speech"><b>Maya:</b> Come along! Let’s explore our town! ✨</div><div class="character" aria-hidden="true">👦🏻</div></div>
+      </section>
+      <section class="scene" data-caption="A library is a place to read. A park is a place to play. A swimming pool is a place to swim. A cinema is a place to watch a movie." aria-label="Public places">
+        <div><div class="scene-heading"><div class="scene-number">2</div><div class="eyebrow">Places in our community</div></div><h1>Where shall we go? 🗺️</h1><p class="lead">These are <b>public places</b>—places people in a community can visit.</p>
+          <div class="town"><div class="place library"><span class="emoji">📚</span><strong>library</strong></div><div class="place park"><span class="emoji">🌳</span><strong>park</strong></div><div class="place pool"><span class="emoji">🏊</span><strong>swimming pool</strong></div><div class="place cinema"><span class="emoji">🎬</span><strong>cinema</strong></div></div>
+        </div><div class="dialogue-row"><div class="talk"><span class="name">Maya</span>Let’s meet at the <b>park</b>!</div><div class="talk friend"><span class="name">Leo</span>Great! We can read at the <b>library</b> another day.</div></div>
+      </section>
+      <section class="scene" data-caption="To invite someone, you can say: Would you like to come to the park with me? Or: Do you want to go to the library after school?" aria-label="Inviting a friend">
+        <div><div class="scene-heading"><div class="scene-number">3</div><div class="eyebrow">Make a friendly invitation</div></div><h1>Ask someone to join you! 💌</h1><p class="lead">Use a warm voice and say where you want to go.</p></div>
+        <div class="dialogue"><div class="character" aria-hidden="true">👧🏽</div><div class="speech"><b>Maya:</b> Would you like to come to the park with me on Saturday?</div><div class="character" aria-hidden="true">👦🏻</div></div>
+        <div class="dialogue-row"><div class="talk"><span class="name">Try another way</span>Do you want to go to the library after school?</div><div class="talk friend"><span class="name">Remember</span>Smile, be clear, and listen to your friend’s answer.</div></div>
+      </section>
+      <section class="scene" data-caption="Leo accepts politely: Yes, I’d love to! Thanks for inviting me. A polite refusal is kind, too: I’m sorry, I can’t. I have a music lesson. Maybe next time!" aria-label="Accepting and refusing politely">
+        <div><div class="scene-heading"><div class="scene-number">4</div><div class="eyebrow">Every answer can be kind</div></div><h1>Say yes—or no—politely! 😊</h1><p class="lead">Listen to two friendly ways to answer an invitation.</p></div>
+        <div class="dialogue-row"><div class="talk friend"><span class="name">Leo • Accepting</span>Yes, I’d love to! Thanks for inviting me. 🎉</div><div class="talk"><span class="name">Maya • Accepting</span>That sounds fun! See you Saturday!</div></div>
+        <div class="dialogue-row"><div class="talk friend"><span class="name">Leo • Refusing kindly</span>I’m sorry, I can’t. I have a music lesson. Maybe next time!</div><div class="talk"><span class="name">Maya • Being understanding</span>No problem. Have a great lesson! 🎵</div></div>
+      </section>
+      <section class="scene" data-caption="At the swimming pool, we must follow the rules. We must walk, listen to the lifeguard, and shower before swimming. We mustn’t run, push, or swim alone." aria-label="Swimming pool rules">
+        <div><div class="scene-heading"><div class="scene-number">5</div><div class="eyebrow">Pool safety first!</div></div><h1>We must stay safe! 🛟</h1><p class="lead"><b>Must</b> means it is important to do. <b>Mustn’t</b> means do not do it.</p>
+          <div class="rule-cards"><div class="rule"><span class="icon">🚶</span><span>We <span class="must">must walk</span>.</span></div><div class="rule"><span class="icon">🛟</span><span>We <span class="must">must listen</span> to the lifeguard.</span></div><div class="rule"><span class="icon">🚿</span><span>We <span class="must">must shower</span> first.</span></div><div class="rule"><span class="icon">🏃</span><span>We <span class="mustnt">mustn’t run</span>.</span></div><div class="rule"><span class="icon">🙅</span><span>We <span class="mustnt">mustn’t push</span>.</span></div><div class="rule"><span class="icon">👫</span><span>We <span class="mustnt">mustn’t swim alone</span>.</span></div></div>
+        </div><div class="dialogue-row"><div class="talk"><span class="name">Maya</span>We must stay with our grown-up, too!</div><div class="talk friend"><span class="name">Leo</span>Good idea. Safety makes swimming fun! 💦</div></div>
+      </section>
+      <section class="scene" data-caption="Here is Maya’s friendly email. Notice also before a verb: I also like drawing. Notice too at the end: I like swimming, too. Both words add another idea." aria-label="Writing a friendly email">
+        <div><div class="scene-heading"><div class="scene-number">6</div><div class="eyebrow">Write to a friend</div></div><h1>A friendly email 📧</h1><p class="lead">A friendly email has a greeting, a message, and a sign-off.</p>
+          <div class="email"><div class="email-top">✉️ To: leo@example.com &nbsp; • &nbsp; Subject: Saturday fun!</div><div class="email-body">Hi Leo,<br>Would you like to go to the swimming pool on Saturday? We <span class="also">also</span> have a new playground there. I like swimming, <span class="too">too</span>!<br>Write back soon.<br>Your friend,<br>Maya</div></div>
+          <p class="email-note"><b>also</b> usually goes before the action: “I <u>also</u> have…” &nbsp; • &nbsp; <b>too</b> often goes at the end: “I like it, <u>too</u>.”</p>
+        </div>
+      </section>
+      <section class="scene" data-caption="You did it! Name a public place, invite a friend, answer kindly, use must and mustn’t for rules, and try also and too in an email. Keep learning and be kind!" aria-label="Lesson recap">
+        <div class="end-card"><div class="big">🏆🌟🎉</div><h2>You’re a Bright Ideas star!</h2><p>You can name public places, invite a friend, answer politely, explain pool rules with <b>must</b> and <b>mustn’t</b>, and use <b>also</b> and <b>too</b> in an email.</p><p><b>Your turn:</b> Invite a friend somewhere fun—and remember to be kind!</p></div>
+      </section>
+    </div>
+    <div class="caption" id="caption" aria-live="polite"><strong>Listen & learn:</strong> Welcome to Our Town, Our Friends! Today we will visit public places, invite friends, learn pool rules, and write a friendly email.</div>
+    <div class="controls"><button class="control-btn secondary" id="prev" type="button" aria-label="Previous scene">← Back</button><button class="control-btn primary" id="play" type="button" aria-label="Play lesson">▶ Play</button><div class="progress-wrap"><div class="progress-label"><span id="sceneLabel">Scene 1 of 7</span><span id="percent">14%</span></div><div class="track" role="progressbar" aria-label="Lesson progress" aria-valuemin="0" aria-valuemax="7" aria-valuenow="1"><div class="bar" id="bar"></div></div></div><button class="control-btn secondary" id="next" type="button" aria-label="Next scene">Next →</button></div>
+    <div class="sr-only" id="announcement" aria-live="polite"></div>
+  </main>
+<script>
+  (()=>{
+    const scenes=[...document.querySelectorAll('.scene')], caption=document.getElementById('caption'), bar=document.getElementById('bar');
+    const label=document.getElementById('sceneLabel'), percent=document.getElementById('percent'), progress=document.querySelector('[role="progressbar"]');
+    const playButton=document.getElementById('play'), announcement=document.getElementById('announcement');
+    let index=0,timer=null,playing=false;
+    function show(n){index=Math.max(0,Math.min(scenes.length-1,n));scenes.forEach((s,i)=>{s.classList.toggle('active',i===index);s.setAttribute('aria-hidden',i===index?'false':'true')});
+      caption.innerHTML='<strong>Listen &amp; learn:</strong> '+scenes[index].dataset.caption;
+      label.textContent=`Scene ${index+1} of ${scenes.length}`;const pct=Math.round((index+1)/scenes.length*100);percent.textContent=pct+'%';bar.style.width=pct+'%';progress.setAttribute('aria-valuenow',index+1);
+      announcement.textContent=`Scene ${index+1} of ${scenes.length}. ${scenes[index].getAttribute('aria-label')}.`;
+      if(index===scenes.length-1) stop();
+    }
+    function stop(){playing=false;clearInterval(timer);timer=null;playButton.textContent='▶ Play';playButton.setAttribute('aria-label','Play lesson');}
+    function start(){if(index===scenes.length-1)show(0);playing=true;playButton.textContent='❚❚ Pause';playButton.setAttribute('aria-label','Pause lesson');timer=setInterval(()=>{if(index<scenes.length-1)show(index+1);else stop()},6500)}
+    playButton.addEventListener('click',()=>playing?stop():start());
+    document.getElementById('next').addEventListener('click',()=>{stop();show(index+1)});
+    document.getElementById('prev').addEventListener('click',()=>{stop();show(index-1)});
+    document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){stop();show(index+1)}if(e.key==='ArrowLeft'){stop();show(index-1)}if(e.key===' '&&e.target.tagName!=='BUTTON'){e.preventDefault();playing?stop():start()}});
+    show(0);
+  })();
+</script>
+</body>
+</html>
